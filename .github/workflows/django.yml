@@ -21,11 +21,21 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: ${{ matrix.python-version }}
+    - name: Open Activate
+      run: |
+        ll_env\Scripts\activate
     - name: Install Dependencies
       run: |
         python -m pip install --upgrade pip
         python -m pip install wheel
-        pip install -r requirements.txt
+        python -m pip install django==2.2.*
+        pip install psycopg==2.7.*
+        pip install django-github
+        pip install gunicorn
+        pip install django-bootstrap4
+        pip install dj-database-url
+        pip install packaging
+        pip install setuptools
     - name: Run Tests
       run: |
         python manage.py runserver
